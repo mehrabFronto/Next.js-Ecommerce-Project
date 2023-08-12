@@ -33,6 +33,7 @@ const Header = () => {
                 rounded-b md:rounded text-lg`}>
                   <li className="w-full pt-2 md:pt-0">
                      <Link
+                        onClick={() => setIsOpen(false)}
                         className="w-full block py-5 pr-2 font-medium"
                         href="/">
                         صفحه اصلی
@@ -40,6 +41,7 @@ const Header = () => {
                   </li>
                   <li className="w-full">
                      <Link
+                        onClick={() => setIsOpen(false)}
                         className="w-full block py-5 pr-2 font-medium"
                         href="/products">
                         محصولات
@@ -47,6 +49,7 @@ const Header = () => {
                   </li>
                   {/* <li className="w-full relative z-40">
                      <Link
+                     onClick={()=> setIsOpen(false)}
                         className="w-full block py-5 pr-2 font-medium"
                         href="/profile">
                         پروفایل
@@ -59,6 +62,7 @@ const Header = () => {
                   </li> */}
                   <li className="w-full">
                      <Link
+                        onClick={() => setIsOpen(false)}
                         href="/auth"
                         className="w-full flex items-center justify-start py-5 pr-2 font-medium">
                         ورود
