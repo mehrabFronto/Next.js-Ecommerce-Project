@@ -14,13 +14,20 @@ const validationSchema = Yup.object({
       .required("شماره تلفن اجباری است"),
 });
 
-const SendOtpForm = ({ mutateGetOtp, setStep, setPhoneNumber }) => {
+const SendOtpForm = ({
+   mutateGetOtp,
+   setStep,
+   setPhoneNumber,
+   setTime,
+   RESEND_TIME,
+}) => {
    const onSubmit = async ({ phoneNumber }) => {
       try {
          const { data } = await mutateGetOtp(phoneNumber);
          toast.success(data.message);
          setStep(2);
          setPhoneNumber(phoneNumber);
+         setTime(RESEND_TIME);
       } catch (error) {
          toast.error(error?.response?.data?.message || error.message);
       }
