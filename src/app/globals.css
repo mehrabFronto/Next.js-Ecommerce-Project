@@ -33,6 +33,13 @@
    }
 }
 
+@layer components {
+   .textField__input {
+      @apply w-full outline-none border-b-2 border-secondary-500 bg-transparent py-4
+      focus:border-primary-600 transition-all text-primary-600;
+   }
+}
+
 html,
 body {
    padding: 0;
