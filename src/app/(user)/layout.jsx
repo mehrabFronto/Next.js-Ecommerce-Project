@@ -1,12 +1,12 @@
 import vazirFont from "@/constants/localFonts";
 import { Toaster } from "react-hot-toast";
-import Header from "./Header";
-import Providers from "./Providers";
-import "./globals.css";
+import Header from "../Header";
+import Providers from "../Providers";
+import "../globals.css";
 
 export const metadata = {
-   title: "Next Shop Panel",
-   description: "Next Shop Panel desc...",
+   title: "نکست شاپ",
+   description: "نکست شاپ",
 };
 
 const Layout = ({ children }) => {
