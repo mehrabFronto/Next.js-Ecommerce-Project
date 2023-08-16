@@ -1,7 +1,9 @@
 "use client";
 import { useGetUser } from "@/hooks/useAuth";
+import { logoutUser } from "@/services/authService";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { HiMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { ImExit } from "react-icons/im";
 
@@ -11,6 +13,15 @@ const Header = () => {
    const { user, cart } = data || {};
 
    const [isOpen, setIsOpen] = useState(false);
+
+   const logoutHandler = async () => {
+      try {
+         await logoutUser();
+         document.location.href = "/";
+      } catch (error) {
+         toast.error(error?.response?.data?.message || error.message);
+      }
+   };
 
    return (
       <header className="w-full text-xl sticky top-0 z-50 bg-primary-600 text-secondary-100 shadow-lg">
@@ -62,6 +73,7 @@ const Header = () => {
                            پروفایل
                         </Link>
                         <button
+                           onClick={logoutHandler}
                            className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-5 left-2 rounded-full z-50">
                            <ImExit className="ml-1" />
@@ -109,6 +121,7 @@ const Header = () => {
                         پروفایل
                      </Link>
                      <button
+                        onClick={logoutHandler}
                         className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-2 left-[-12px] rounded-full z-50 hover:scale-125 transition-all">
                         <ImExit className="ml-1" />
