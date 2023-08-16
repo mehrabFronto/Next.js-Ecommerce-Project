@@ -2,6 +2,7 @@ import vazirFont from "@/constants/localFonts";
 import { Toaster } from "react-hot-toast";
 import Providers from "../../Providers";
 import "../../globals.css";
+import MobileHeader from "./MobileHeader";
 import SideBar from "./SideBar";
 
 export const metadata = {
@@ -17,11 +18,19 @@ const Layout = ({ children }) => {
          <body className={`${vazirFont.variable} font-sans`}>
             <Providers>
                <Toaster />
-               <main className="min-h-screen grid grid-cols-4 bg-white">
-                  <div className="col-span-1 bg-gray-100 overflow-y-auto">
+               {/* mobile header */}
+               <header
+                  className="w-full text-xl sticky top-0 z-50 bg-primary-600 text-secondary-100 
+                  shadow-lg md:hidden mb-8">
+                  <MobileHeader />
+               </header>
+               <main className="w-full min-h-screen grid grid-cols-5  bg-white">
+                  {/* side bar */}
+                  <div className="hidden md:block col-span-2 xl:col-span-1 bg-gray-100 overflow-y-auto">
                      <SideBar />
                   </div>
-                  <div className="col-span-3 overflow-y-auto p-4">
+                  {/* page content */}
+                  <div className="col-span-5 md:col-span-3 xl:col-span-4 overflow-y-auto p-2 md:p-4">
                      {children}
                   </div>
                </main>

@@ -16,20 +16,21 @@ const SideBar = () => {
 
    return (
       <div>
-         <h2 className="text-3xl font-bold mb-2">
-            <Link
-               href="/profile"
-               className="w-full p-4 block hover:text-primary-600 transition-all">
-               پروفایل کاربری
-            </Link>
-         </h2>
-         <ul className="flex flex-col gap-y-4 p-2">
+         <ul className="flex flex-col gap-y-4 p-4">
             <li>
                <Link
                   className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
                    transition-all duration-200"
                   href="/">
                   صفحه اصلی
+               </Link>
+            </li>
+            <li>
+               <Link
+                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
+                   transition-all duration-200"
+                  href="/profile">
+                  داشبورد
                </Link>
             </li>
             <li>

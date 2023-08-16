@@ -40,7 +40,7 @@ function MePage() {
    if (isLoading) return <ThreeDotsLoading />;
 
    return (
-      <div className="container max-w-md mt-20 ">
+      <div className="container max-w-md md:mt-20">
          <h1 className="text-2xl font-bold mb-4">اطلاعات کاربری</h1>
          <form
             onSubmit={submitHandler}
