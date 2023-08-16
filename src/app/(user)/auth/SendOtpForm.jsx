@@ -25,10 +25,10 @@ const SendOtpForm = ({
       try {
          const { data } = await mutateGetOtp(phoneNumber);
          toast.success(data.message);
+      } catch (error) {
          setStep(2);
          setPhoneNumber(phoneNumber);
          setTime(RESEND_TIME);
-      } catch (error) {
          toast.error(error?.response?.data?.message || error.message);
       }
    };

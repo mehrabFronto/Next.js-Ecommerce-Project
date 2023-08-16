@@ -1,4 +1,5 @@
 import { toPersianDigits } from "@/utils/toPersianDigits";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -13,6 +14,7 @@ const CheckOtpForm = ({
    onResend,
 }) => {
    const router = useRouter();
+   const queryClient = useQueryClient();
 
    const [otp, setOtp] = useState("");
 
@@ -20,6 +22,7 @@ const CheckOtpForm = ({
       e.preventDefault();
       try {
          const { message, user } = await mutateCheckOtp({ phoneNumber, otp });
+         queryClient.invalidateQueries({ queryKey: ["get-user"] });
          toast.success(message);
          if (user.isActive) router.push("/");
          else router.push("/complete-profile");
