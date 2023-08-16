@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
             <Providers>
                <Toaster />
                <main className="min-h-screen grid grid-cols-4 bg-white">
-                  <div className="col-span-1 bg-gray-100 overflow-y-auto p-4">
+                  <div className="col-span-1 bg-gray-100 overflow-y-auto">
                      <SideBar />
                   </div>
                   <div className="col-span-3 overflow-y-auto p-4">
