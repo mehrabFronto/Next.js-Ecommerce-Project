@@ -35,6 +35,7 @@ const http = {
    get: app.get,
    post: app.post,
    put: app.put,
+   patch: app.patch,
    delete: app.delete,
 };
 
