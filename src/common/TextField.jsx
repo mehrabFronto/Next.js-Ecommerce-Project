@@ -1,4 +1,4 @@
-const TextFiled = ({ label, name, type = "text", placeholder, formik }) => {
+const TextField = ({ label, name, type = "text", placeholder, formik }) => {
    return (
       <div className="flex flex-col gap-y-2">
          <div className="w-full flex items-center justify-between">
@@ -25,4 +25,4 @@ const TextFiled = ({ label, name, type = "text", placeholder, formik }) => {
    );
 };
 
-export default TextFiled;
+export default TextField;
