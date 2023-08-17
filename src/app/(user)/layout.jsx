@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
             <Providers>
                <Toaster />
                <Header />
-               <main className="container xl:max-w-screen-xl min-h-screen pt-6 lg:pt-8 pb-8 px-2">
+               <main className="container min-h-screen pt-6 lg:pt-8 pb-8 px-2 md:px-0">
                   {children}
                </main>
             </Providers>
