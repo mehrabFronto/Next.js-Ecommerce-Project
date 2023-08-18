@@ -1,8 +1,27 @@
+"use client";
+
 import CheckBox from "@/common/CheckBox";
-import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useState } from "react";
 
 const CategoriesSideBar = ({ categories }) => {
-   const [selectedCategories, setSelectedCategories] = useState([]);
+   const router = useRouter();
+   const pathname = usePathname();
+   const searchParams = useSearchParams();
+
+   const [selectedCategories, setSelectedCategories] = useState(
+      searchParams.get("category")?.split(",") || [],
+   );
+
+   const createQueryString = useCallback(
+      (name, value) => {
+         const params = new URLSearchParams(searchParams);
+         params.set(name, value);
+
+         return params.toString();
+      },
+      [searchParams],
+   );
 
    const changeHandler = ({ target }) => {
       if (selectedCategories.includes(target.value)) {
@@ -10,8 +29,19 @@ const CategoriesSideBar = ({ categories }) => {
             (items) => !items.includes(target.value),
          );
          setSelectedCategories(filteredItems);
+         router.push(
+            pathname + "?" + createQueryString("category", filteredItems),
+         );
       } else {
          setSelectedCategories([...selectedCategories, target.value]);
+         router.push(
+            pathname +
+               "?" +
+               createQueryString("category", [
+                  ...selectedCategories,
+                  target.value,
+               ]),
+         );
       }
    };
 

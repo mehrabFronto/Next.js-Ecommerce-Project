@@ -1,25 +1,18 @@
-"use client";
-
-import ThreeDotsLoading from "@/common/ThreeDotsLoading";
-import { useGetCategories } from "@/hooks/useCategories";
-import { useGetProducts } from "@/hooks/useProducts";
+import { getAllCategories } from "@/services/categoriesServices";
+import { getAllProducts } from "@/services/productsServices";
+import queryString from "query-string";
 import CategoriesSideBar from "./CategoriesSideBar";
 
-const ProductsPage = () => {
-   const { data: categoriesData, isLoading: fetchingCategories } =
-      useGetCategories();
+export const dynamic = "force-dynamic";
 
-   const { data: productsData, isLoading: fetchingProducts } = useGetProducts();
+const ProductsPage = async ({ searchParams }) => {
+   const { products } = await getAllProducts(
+      queryString.stringify(searchParams),
+   );
+   const { categories } = await getAllCategories();
 
    const renderProducts = () => {
-      if (fetchingProducts)
-         return (
-            <div className="col-span-3 flex items-center justify-center">
-               <ThreeDotsLoading />
-            </div>
-         );
-
-      return productsData.products.map((product) => {
+      return products.map((product) => {
          return (
             <div
                key={product._id}
@@ -36,11 +29,7 @@ const ProductsPage = () => {
          {/* categories */}
          <div className="col-span-1 hidden md:block">
             <div className="bg-secondary-200 shadow-lg rounded-xl sticky top-20 lg:top-28 p-3 xl:p-4">
-               {fetchingCategories ? (
-                  <ThreeDotsLoading />
-               ) : (
-                  <CategoriesSideBar categories={categoriesData.categories} />
-               )}
+               <CategoriesSideBar categories={categories} />
             </div>
          </div>
          {/* products */}
