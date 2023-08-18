@@ -6,10 +6,12 @@ import CategoriesSideBar from "./CategoriesSideBar";
 export const dynamic = "force-dynamic";
 
 const ProductsPage = async ({ searchParams }) => {
-   const { products } = await getAllProducts(
-      queryString.stringify(searchParams),
-   );
-   const { categories } = await getAllCategories();
+   const productsPromise = getAllProducts(queryString.stringify(searchParams));
+   const categoriesPromise = getAllCategories();
+   const [{ products }, { categories }] = await Promise.all([
+      productsPromise,
+      categoriesPromise,
+   ]);
 
    const renderProducts = () => {
       return products.map((product) => {
