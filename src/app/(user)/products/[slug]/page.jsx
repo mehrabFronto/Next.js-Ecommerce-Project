@@ -6,6 +6,7 @@ import { priceUtils } from "@/utils/priceUtils";
 import { toPersianDigits } from "@/utils/toPersianDigits";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCart from "./AddToCart";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -94,13 +95,7 @@ const SingleProductPage = async ({ params }) => {
                   </Link>
                </div>
                {/* button */}
-               <div className="flex items-center justify-center w-full relative">
-                  <button
-                     className="bg-primary-600 text-secondary-100 py-3 rounded-xl w-full absolute bottom-[-115px]
-                     md:bottom-[-40px] lg:bottom-[-85px] md:w-2/3 left-0 shadow-lg">
-                     افزودن به سبد خرید
-                  </button>
-               </div>
+               <AddToCart product={product} />
             </div>
          </div>
       </div>

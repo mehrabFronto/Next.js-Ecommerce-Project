@@ -5,6 +5,7 @@ import { toPersianDigits } from "@/utils/toPersianDigits";
 import Image from "next/image";
 import Link from "next/link";
 import queryString from "query-string";
+import AddToCart from "./AddToCart";
 import CategoriesSideBar from "./CategoriesSideBar";
 
 export const dynamic = "force-dynamic";
@@ -89,9 +90,7 @@ const ProductsPage = async ({ searchParams }) => {
                   )}
                </div>
                {/* button */}
-               <button className="bg-primary-600 text-secondary-100 py-2 rounded-md w-full relative">
-                  افزودن به سبد خرید
-               </button>
+               <AddToCart product={product} />
             </div>
          );
       });
