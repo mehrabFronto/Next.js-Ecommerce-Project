@@ -1,6 +1,7 @@
 "use client";
 import { useGetUser } from "@/hooks/useAuth";
 import { logoutUser } from "@/services/authService";
+import { toPersianDigits } from "@/utils/toPersianDigits";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -46,7 +47,11 @@ const Header = () => {
             {isOpen && (
                <ul
                   className={`lg:hidden flex flex-col items-center justify-center absolute
-                bg-primary-600 w-full bottom-[-211px] md:bottom-[-220px] left-0 right-0 shadow-xl 
+                bg-primary-600 w-full ${
+                   user
+                      ? "bottom-[-280px] md:bottom-[-290px]"
+                      : "bottom-[-210px] md:bottom-[-220px]"
+                } left-0 right-0 shadow-xl 
                 rounded-b md:rounded text-lg`}>
                   <li className="w-full pt-2 md:pt-0">
                      <Link
@@ -65,20 +70,35 @@ const Header = () => {
                      </Link>
                   </li>
                   {user ? (
-                     <li className="w-full relative z-40">
-                        <Link
-                           onClick={() => setIsOpen(false)}
-                           className="w-full block py-5 pr-2 font-medium"
-                           href="/profile">
-                           پروفایل
-                        </Link>
-                        <button
-                           onClick={logoutHandler}
-                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                     <>
+                        <li className="w-full relative z-40">
+                           <Link
+                              onClick={() => setIsOpen(false)}
+                              className="w-full block py-5 pr-2 font-medium"
+                              href="/cart">
+                              سبد خرید
+                           </Link>
+                           <span
+                              className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-5 left-2 rounded-full z-50">
-                           <ImExit className="ml-1" />
-                        </button>
-                     </li>
+                              {toPersianDigits(user.cart.products.length)}
+                           </span>
+                        </li>
+                        <li className="w-full relative z-40">
+                           <Link
+                              onClick={() => setIsOpen(false)}
+                              className="w-full block py-5 pr-2 font-medium"
+                              href="/profile">
+                              پروفایل
+                           </Link>
+                           <button
+                              onClick={logoutHandler}
+                              className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                        absolute top-5 left-2 rounded-full z-50">
+                              <ImExit className="ml-1" />
+                           </button>
+                        </li>
+                     </>
                   ) : (
                      <li className="w-full">
                         <Link
@@ -113,20 +133,35 @@ const Header = () => {
                   </Link>
                </li>
                {user ? (
-                  <li className="relative z-40">
-                     <Link
-                        className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+                  <>
+                     <li className="relative z-40">
+                        <Link
+                           className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
                       hover:text-primary-600 transition-all rounded-lg"
-                        href="/profile">
-                        پروفایل
-                     </Link>
-                     <button
-                        onClick={logoutHandler}
-                        className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                           href="/cart">
+                           سبد خرید
+                        </Link>
+                        <span
+                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                        absolute top-2 left-[-12px] pt-0.5 pr-0.5 rounded-full z-50">
+                           {toPersianDigits(user.cart.products.length)}
+                        </span>
+                     </li>
+                     <li className="relative z-40">
+                        <Link
+                           className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+                      hover:text-primary-600 transition-all rounded-lg"
+                           href="/profile">
+                           پروفایل
+                        </Link>
+                        <button
+                           onClick={logoutHandler}
+                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-2 left-[-12px] rounded-full z-50 hover:scale-125 transition-all">
-                        <ImExit className="ml-1" />
-                     </button>
-                  </li>
+                           <ImExit className="ml-1" />
+                        </button>
+                     </li>
+                  </>
                ) : (
                   <li>
                      <Link

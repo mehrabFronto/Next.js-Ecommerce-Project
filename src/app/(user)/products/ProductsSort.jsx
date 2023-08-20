@@ -55,7 +55,7 @@ const ProductsSort = () => {
 
    return (
       <>
-         <div className="bg-secondary-200 shadow-lg rounded-2xl sticky top-20 lg:top-[340px] p-3 xl:p-4 hidden md:block">
+         <div className="bg-secondary-200 shadow-lg rounded-2xl sticky top-20 md:top-[300px] lg:top-[340px] p-3 xl:p-4 hidden md:block">
             <h2 className="text-2xl font-semibold mb-6">مرتب سازی</h2>
             <ul className="space-y-4">
                {sortOptions.map((option) => {

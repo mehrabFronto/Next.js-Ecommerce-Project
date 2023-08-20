@@ -2,7 +2,7 @@
 
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
 import { useGetUser } from "@/hooks/useAuth";
-import useAddToCart from "@/hooks/useCart";
+import { useAddToCart } from "@/hooks/useCart";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
