@@ -44,14 +44,14 @@ function MePage() {
          <h1 className="text-2xl font-bold mb-4">اطلاعات کاربری</h1>
          <form
             onSubmit={submitHandler}
-            className=" flex flex-col w-full bg-primary-200 p-4 pb-8 rounded-xl shadow-xl">
+            className=" flex flex-col w-full bg-primary-200 p-6 pb-8 rounded-2xl shadow-xl">
             <div className="w-full flex flex-col-reverse gap-y-4 mb-8">
                {Object.keys(includeObj(user, includesKey)).map((key) => {
                   return (
                      // text field
                      <div
                         key={key}
-                        className="flex flex-col w-full">
+                        className="flex flex-col w-full gap-y-2">
                         {/* label */}
                         <div
                            className={`w-full flex items-center justify-between ${

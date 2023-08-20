@@ -35,8 +35,8 @@
 
 @layer components {
    .textField__input {
-      @apply w-full outline-none border-b-2 border-secondary-500 bg-transparent py-4
-      focus:border-primary-600 transition-all text-primary-600;
+      @apply w-full outline-none border-2 border-secondary-500 rounded-xl bg-primary-100 py-4
+      focus:border-primary-600 focus:shadow-xl focus:bg-transparent transition-all text-primary-600;
    }
 }
 
