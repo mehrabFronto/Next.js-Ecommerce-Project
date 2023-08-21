@@ -42,6 +42,14 @@ const SideBar = () => {
                </Link>
             </li>
             <li>
+               <Link
+                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
+                   transition-all duration-200"
+                  href="/profile/payments">
+                  سفارشات
+               </Link>
+            </li>
+            <li>
                <button
                   onClick={logoutHandler}
                   className="px-4 py-6 bg-primary-100 rounded-md w-full text-right text-red-500 hover:shadow-md 

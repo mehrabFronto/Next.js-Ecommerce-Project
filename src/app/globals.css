@@ -49,6 +49,13 @@
       @apply w-full outline-none border-2 border-secondary-500 rounded-xl bg-primary-100 py-4
       focus:border-primary-600 focus:shadow-xl focus:bg-transparent transition-all text-primary-600;
    }
+
+   .table__th {
+      @apply border-b-2 border-secondary-500 font-medium p-3 pr-8 pb-3 text-right;
+   }
+   .table__td {
+      @apply border-b border-secondary-300 p-3 pr-8 pb-3 text-right;
+   }
 }
 
 html,
