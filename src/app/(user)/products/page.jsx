@@ -2,16 +2,24 @@ import { getAllCategories } from "@/services/categoriesServices";
 import { getAllProducts } from "@/services/productsServices";
 import { priceUtils } from "@/utils/priceUtils";
 import { toPersianDigits } from "@/utils/toPersianDigits";
+import toStringCookies from "@/utils/toStringCookies";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import queryString from "query-string";
 import AddToCart from "./AddToCart";
 import CategoriesSideBar from "./CategoriesSideBar";
+import LikeProduct from "./LikeProduct";
 
 export const dynamic = "force-dynamic";
 
 const ProductsPage = async ({ searchParams }) => {
-   const productsPromise = getAllProducts(queryString.stringify(searchParams));
+   const cookiesStore = cookies();
+   const strCookies = toStringCookies(cookiesStore);
+   const productsPromise = getAllProducts(
+      queryString.stringify(searchParams),
+      strCookies,
+   );
    const categoriesPromise = getAllCategories();
    const [{ products }, { categories }] = await Promise.all([
       productsPromise,
@@ -26,7 +34,7 @@ const ProductsPage = async ({ searchParams }) => {
                className="col-span-3 md:col-span-2 xl:col-span-1 bg-white shadow-md rounded-xl p-4 
                min-h-[380px] flex flex-col">
                {/* product image section */}
-               <div className="aspect-w-16 aspect-h-9 w-full mb-6">
+               <div className="aspect-w-16 aspect-h-9 w-full mb-6 relative">
                   <Link href={`/products/${product.slug}`}>
                      <Image
                         width={"400"}
@@ -40,6 +48,9 @@ const ProductsPage = async ({ searchParams }) => {
                         className="rounded-lg w-full h-full object-center object-cover"
                      />
                   </Link>
+                  <div className="p-2">
+                     <LikeProduct product={product} />
+                  </div>
                </div>
                {/* title and brand section */}
                <div className="flex items-center justify-between mb-6 flex-1">
