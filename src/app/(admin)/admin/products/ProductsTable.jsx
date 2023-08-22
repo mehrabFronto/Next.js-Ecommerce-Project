@@ -1,16 +1,15 @@
-import { userListTableHeads } from "@/constants/tableHeads";
-import { toLocaleDateString } from "@/utils/toLocalDateString";
+import { productListTableTHeads } from "@/constants/tableHeads";
+import { priceUtils } from "@/utils/priceUtils";
 import { toPersianDigits } from "@/utils/toPersianDigits";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const UsersTable = ({ users }) => {
+const ProductsTable = ({ products }) => {
    return (
       <div className="overflow-auto pb-2 customScrollBar">
          <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
             <thead>
                <tr>
-                  {userListTableHeads.map((item) => {
+                  {productListTableTHeads.map((item) => {
                      return (
                         <th
                            key={item.id}
@@ -22,33 +21,29 @@ const UsersTable = ({ users }) => {
                </tr>
             </thead>
             <tbody>
-               {users.map((user, index) => {
+               {products.map((product, index) => {
                   return (
-                     <tr key={user._id}>
+                     <tr key={product._id}>
                         <td className="table__td">{toPersianDigits(index)}</td>
-                        <td className="table__td">{user.name}</td>
-                        <td className="table__td">{user.email}</td>
+                        <td className="table__td">{product.title}</td>
+                        <td className="table__td">{product.category.title}</td>
                         <td className="table__td">
-                           <div className="flex items-center gap-x-2">
-                              {user.isVerifiedPhoneNumber && (
-                                 <CheckCircleIcon className="w-5 h-5 text-success" />
-                              )}
-                              {toPersianDigits(user.phoneNumber)}
-                           </div>
+                           {toPersianDigits(priceUtils(product.price))}
                         </td>
                         <td className="table__td">
-                           <div className="space-y-2 max-h-20 overflow-y-auto customScrollBar">
-                              {user.Products.map((product, index) => {
-                                 return <div key={index}>{product.title}</div>;
-                              })}
-                           </div>
+                           {toPersianDigits(
+                              priceUtils(product.price - product.offPrice),
+                           )}
                         </td>
                         <td className="table__td">
-                           {toLocaleDateString(user.createdAt)}
+                           {toPersianDigits(priceUtils(product.offPrice))}
+                        </td>
+                        <td className="table__td">
+                           {toPersianDigits(product.countInStock)}
                         </td>
                         <td className="table__td">
                            <Link
-                              href={`/admin/users/${user._id}`}
+                              href={`/admin/products/${product._id}`}
                               className="text-primary-600">
                               مشاهده جزییات
                            </Link>
@@ -62,4 +57,4 @@ const UsersTable = ({ users }) => {
    );
 };
 
-export default UsersTable;
+export default ProductsTable;
