@@ -53,6 +53,7 @@ const productsFormData = [
 ];
 
 const ProductForm = ({
+   formTitle,
    onSubmit,
    tags,
    setTags,
@@ -68,7 +69,7 @@ const ProductForm = ({
          className="container max-w-screen-sm flex flex-col items-start gap-y-8 justify-center pb-24"
          onSubmit={onSubmit}>
          {/* Page title */}
-         <h1 className="text-primary-600 text-3xl font-black">افزودن محصول</h1>
+         <h1 className="text-primary-600 text-3xl font-black">{formTitle}</h1>
          {/* inputs */}
          <div className="flex flex-col gap-y-6 w-full pr-2">
             {/* form data inputs */}
@@ -132,7 +133,7 @@ const ProductForm = ({
             <button
                className="w-full bg-primary-600 text-secondary-100 py-3 rounded-lg mt-2"
                type="submit">
-               {isLoading ? <ThreeDotsLoading /> : "ثبت محصول"}
+               {isLoading ? <ThreeDotsLoading /> : "تایید"}
             </button>
          </div>
       </form>

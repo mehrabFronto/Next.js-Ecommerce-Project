@@ -91,6 +91,6 @@ export const productListTableTHeads = [
    },
    {
       id: 8,
-      label: "مشاهده جزییات",
+      label: "عملیات",
    },
 ];
