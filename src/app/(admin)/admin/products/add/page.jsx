@@ -51,6 +51,7 @@ const AddProductPage = () => {
 
    return (
       <ProductForm
+         formTitle="افزودن محصول"
          onSubmit={submitHandler}
          tags={tags}
          setTags={setTags}

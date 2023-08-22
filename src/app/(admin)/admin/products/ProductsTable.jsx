@@ -1,6 +1,7 @@
 import { productListTableTHeads } from "@/constants/tableHeads";
 import { priceUtils } from "@/utils/priceUtils";
 import { toPersianDigits } from "@/utils/toPersianDigits";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 const ProductsTable = ({ products }) => {
@@ -42,11 +43,16 @@ const ProductsTable = ({ products }) => {
                            {toPersianDigits(product.countInStock)}
                         </td>
                         <td className="table__td">
-                           <Link
-                              href={`/admin/products/${product._id}`}
-                              className="text-primary-600">
-                              مشاهده جزییات
-                           </Link>
+                           <div className="flex items-center gap-x-2">
+                              <button>
+                                 <TrashIcon className="w-6 h-6 text-red-500" />
+                              </button>
+                              <Link
+                                 className="block text-secondary-600"
+                                 href={`/admin/edit/${product._id}`}>
+                                 <PencilSquareIcon className="w-6 h-6" />
+                              </Link>
+                           </div>
                         </td>
                      </tr>
                   );
