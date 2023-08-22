@@ -23,7 +23,7 @@ const LikeProduct = ({ product }) => {
       <button
          onClick={likeHandler}
          className="w-7 h-7 bg-white rounded-full flex items-center
-          justify-center absolute left-2">
+          justify-center absolute left-2 z-40">
          <HeartIcon
             className={`w-5 h-5 stroke-2 ${
                product.isLiked

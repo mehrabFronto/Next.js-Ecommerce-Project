@@ -35,7 +35,9 @@ const ProductsPage = async ({ searchParams }) => {
                min-h-[380px] flex flex-col">
                {/* product image section */}
                <div className="aspect-w-16 aspect-h-9 w-full mb-6 relative">
-                  <Link href={`/products/${product.slug}`}>
+                  <Link
+                     href={`/products/${product.slug}`}
+                     className="z-40">
                      <Image
                         width={"400"}
                         height={"400"}
