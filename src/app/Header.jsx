@@ -48,7 +48,9 @@ const Header = () => {
                <ul
                   className={`lg:hidden flex flex-col items-center justify-center absolute
                 bg-primary-600 w-full ${
-                   user
+                   user && user.role === "ADMIN"
+                      ? "bottom-[-345px] md:bottom-[-355px]"
+                      : user && user.role === "USER"
                       ? "bottom-[-280px] md:bottom-[-290px]"
                       : "bottom-[-210px] md:bottom-[-220px]"
                 } left-0 right-0 shadow-xl 
@@ -81,9 +83,19 @@ const Header = () => {
                            <span
                               className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-5 left-2 rounded-full z-50">
-                              {toPersianDigits(user.cart.products.length)}
+                              {toPersianDigits(user.cart?.products.length || 0)}
                            </span>
                         </li>
+                        {user.role === "ADMIN" && (
+                           <li className="w-full">
+                              <Link
+                                 onClick={() => setIsOpen(false)}
+                                 className="w-full block py-5 pr-2 font-medium"
+                                 href="/admin">
+                                 پنل ادمین
+                              </Link>
+                           </li>
+                        )}
                         <li className="w-full relative z-40">
                            <Link
                               onClick={() => setIsOpen(false)}
@@ -144,9 +156,19 @@ const Header = () => {
                         <span
                            className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-2 left-[-12px] pt-0.5 pr-0.5 rounded-full z-50">
-                           {toPersianDigits(user.cart.products.length)}
+                           {toPersianDigits(user.cart?.products.length || 0)}
                         </span>
                      </li>
+                     {user.role === "ADMIN" && (
+                        <li>
+                           <Link
+                              className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+                      hover:text-primary-600 transition-all rounded-lg"
+                              href="/admin">
+                              پنل ادمین
+                           </Link>
+                        </li>
+                     )}
                      <li className="relative z-40">
                         <Link
                            className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
