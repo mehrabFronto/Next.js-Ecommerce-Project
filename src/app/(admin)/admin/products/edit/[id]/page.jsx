@@ -5,6 +5,7 @@ import ProductForm from "@/components/ProductForm";
 import { useGetCategories } from "@/hooks/useCategories";
 import { useGetProductById, useUpdateProduct } from "@/hooks/useProducts";
 import { includeObj } from "@/utils/objectUtils";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -20,10 +21,10 @@ const EditProductPage = () => {
    const { data: categoriesData } = useGetCategories();
    const { categories } = categoriesData || {};
 
+   const queryClient = useQueryClient();
    const { data: productData, isLoading: fetchingProduct } =
       useGetProductById(id);
    const { product } = productData || {};
-
    const { isLoading, mutateAsync } = useUpdateProduct();
 
    const includesKey = [
@@ -58,6 +59,7 @@ const EditProductPage = () => {
             id: product._id,
          });
          router.push("/admin/products");
+         queryClient.invalidateQueries({ queryKey: ["get-product"] });
          toast.success(message);
       } catch (error) {
          toast.error(error?.response?.data?.message);
