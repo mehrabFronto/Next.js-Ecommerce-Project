@@ -21,7 +21,7 @@ const categoriesFormData = [
    },
 ];
 
-const categoriesTypes = [
+export const categoriesTypes = [
    { id: 1, label: "محصول", value: "product" },
    { id: 2, label: "پست", value: "post" },
    { id: 3, label: "تیکت", value: "ticket" },
