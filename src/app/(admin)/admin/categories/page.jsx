@@ -1,16 +1,30 @@
 "use client";
 
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
-import { useGetCategories } from "@/hooks/useCategories";
+import { useGetCategories, useRemoveCategory } from "@/hooks/useCategories";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import CategoriesTable from "./CategoriesTable";
 
 const CategoriesPage = () => {
+   const queryClient = useQueryClient();
+
    const { data, isLoading } = useGetCategories();
    const { categories } = data || {};
 
-   if (categories) console.log(categories);
+   const { mutateAsync } = useRemoveCategory();
+
+   const removeCategoryHandler = async (id) => {
+      try {
+         const { message } = await mutateAsync(id);
+         toast.success(message);
+         queryClient.invalidateQueries({ queryKey: ["get-categories"] });
+      } catch (error) {
+         toast.error(error?.response?.data?.message || error.message);
+      }
+   };
 
    if (isLoading) return <ThreeDotsLoading />;
 
@@ -25,7 +39,10 @@ const CategoriesPage = () => {
                <span>افزودن دسته بندی جدید</span>
             </Link>
          </div>
-         <CategoriesTable categories={categories} />
+         <CategoriesTable
+            categories={categories}
+            onRemoveCategory={removeCategoryHandler}
+         />
       </div>
    );
 };
