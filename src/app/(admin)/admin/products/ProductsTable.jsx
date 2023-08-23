@@ -49,7 +49,7 @@ const ProductsTable = ({ products }) => {
                               </button>
                               <Link
                                  className="block text-secondary-600"
-                                 href={`/admin/edit/${product._id}`}>
+                                 href={`/admin/products/edit/${product._id}`}>
                                  <PencilSquareIcon className="w-6 h-6" />
                               </Link>
                            </div>
