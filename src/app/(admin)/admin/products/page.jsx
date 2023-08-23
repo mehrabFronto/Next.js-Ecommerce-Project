@@ -1,17 +1,30 @@
 "use client";
 
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
-import { useGetProducts } from "@/hooks/useProducts";
+import { useGetProducts, useRemoveProduct } from "@/hooks/useProducts";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import ProductsTable from "./productsTable";
 
 const ProductsPage = () => {
-   const { data, isLoading } = useGetProducts();
+   const queryClient = useQueryClient();
 
+   const { data, isLoading } = useGetProducts();
    const { products } = data || [];
 
-   // if (products) console.log(products);
+   const { mutateAsync } = useRemoveProduct();
+
+   const removeProductHandler = async (id) => {
+      try {
+         const { message } = await mutateAsync(id);
+         toast.success(message);
+         queryClient.invalidateQueries({ queryKey: ["get-products"] });
+      } catch (error) {
+         toast.error(error?.response?.data?.message || error.message);
+      }
+   };
 
    if (isLoading) return <ThreeDotsLoading />;
 
@@ -26,7 +39,10 @@ const ProductsPage = () => {
                <span>افزودن محصول جدید</span>
             </Link>
          </div>
-         <ProductsTable products={products} />
+         <ProductsTable
+            products={products}
+            onRemoveProduct={removeProductHandler}
+         />
       </div>
    );
 };
