@@ -1,14 +1,30 @@
 "use client";
 
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
-import { useGetAllCoupons } from "@/hooks/useCoupons";
+import { useGetAllCoupons, useRemoveCoupon } from "@/hooks/useCoupons";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import CouponsTable from "./CouponsTable";
 
 const CouponsPage = () => {
+   const queryClient = useQueryClient();
+
    const { isLoading, data } = useGetAllCoupons();
    const { coupons } = data || {};
+
+   const { mutateAsync } = useRemoveCoupon();
+
+   const removeCouponHandler = async (id) => {
+      try {
+         const { message } = await mutateAsync(id);
+         queryClient.invalidateQueries({ queryKey: ["get-coupons"] });
+         toast.success(message);
+      } catch (error) {
+         toast.error(error?.response?.data?.message || error.message);
+      }
+   };
 
    if (isLoading) return <ThreeDotsLoading />;
 
@@ -23,7 +39,10 @@ const CouponsPage = () => {
                <span>افزودن کد تخفیف جدید</span>
             </Link>
          </div>
-         <CouponsTable coupons={coupons} />
+         <CouponsTable
+            coupons={coupons}
+            onRemoveCoupon={removeCouponHandler}
+         />
       </div>
    );
 };

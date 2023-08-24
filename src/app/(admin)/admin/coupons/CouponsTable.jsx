@@ -5,7 +5,7 @@ import { toPersianDigits } from "@/utils/toPersianDigits";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const CouponsTable = ({ coupons }) => {
+const CouponsTable = ({ coupons, onRemoveCoupon }) => {
    return (
       <div className="overflow-auto pb-2 customScrollBar">
          <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
@@ -53,7 +53,8 @@ const CouponsTable = ({ coupons }) => {
                         </td>
                         <td className="table__td">
                            <div className="flex items-center gap-x-2">
-                              <button>
+                              <button
+                                 onClick={() => onRemoveCoupon(coupon._id)}>
                                  <TrashIcon className="w-6 h-6 text-red-500" />
                               </button>
                               <Link
