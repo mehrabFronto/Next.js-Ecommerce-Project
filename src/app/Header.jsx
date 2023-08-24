@@ -1,10 +1,28 @@
 "use client";
+import { useGetUser } from "@/hooks/useAuth";
+import { logoutUser } from "@/services/authService";
+import { toPersianDigits } from "@/utils/toPersianDigits";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { HiMenuAlt3, HiOutlineX } from "react-icons/hi";
+import { ImExit } from "react-icons/im";
 
 const Header = () => {
+   const { data, error, isLoading } = useGetUser();
+
+   const { user, cart } = data || {};
+
    const [isOpen, setIsOpen] = useState(false);
+
+   const logoutHandler = async () => {
+      try {
+         await logoutUser();
+         document.location.href = "/";
+      } catch (error) {
+         toast.error(error?.response?.data?.message || error.message);
+      }
+   };
 
    return (
       <header className="w-full text-xl sticky top-0 z-50 bg-primary-600 text-secondary-100 shadow-lg">
@@ -29,10 +47,17 @@ const Header = () => {
             {isOpen && (
                <ul
                   className={`lg:hidden flex flex-col items-center justify-center absolute
-                bg-primary-600 w-full bottom-[-211px] md:bottom-[-220px] left-0 right-0 shadow-xl 
+                bg-primary-600 w-full ${
+                   user && user.role === "ADMIN"
+                      ? "bottom-[-345px] md:bottom-[-355px]"
+                      : user && user.role === "USER"
+                      ? "bottom-[-280px] md:bottom-[-290px]"
+                      : "bottom-[-210px] md:bottom-[-220px]"
+                } left-0 right-0 shadow-xl 
                 rounded-b md:rounded text-lg`}>
                   <li className="w-full pt-2 md:pt-0">
                      <Link
+                        onClick={() => setIsOpen(false)}
                         className="w-full block py-5 pr-2 font-medium"
                         href="/">
                         صفحه اصلی
@@ -40,35 +65,69 @@ const Header = () => {
                   </li>
                   <li className="w-full">
                      <Link
+                        onClick={() => setIsOpen(false)}
                         className="w-full block py-5 pr-2 font-medium"
                         href="/products">
                         محصولات
                      </Link>
                   </li>
-                  {/* <li className="w-full relative z-40">
-                     <Link
-                        className="w-full block py-5 pr-2 font-medium"
-                        href="/profile">
-                        پروفایل
-                     </Link>
-                     <button
-                        className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                  {user ? (
+                     <>
+                        <li className="w-full relative z-40">
+                           <Link
+                              onClick={() => setIsOpen(false)}
+                              className="w-full block py-5 pr-2 font-medium"
+                              href="/cart">
+                              سبد خرید
+                           </Link>
+                           <span
+                              className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-5 left-2 rounded-full z-50">
-                        <ImExit className="ml-1" />
-                     </button>
-                  </li> */}
-                  <li className="w-full">
-                     <Link
-                        href="/auth"
-                        className="w-full flex items-center justify-start py-5 pr-2 font-medium">
-                        ورود
-                     </Link>
-                  </li>
+                              {toPersianDigits(user.cart?.products.length || 0)}
+                           </span>
+                        </li>
+                        {user.role === "ADMIN" && (
+                           <li className="w-full">
+                              <Link
+                                 onClick={() => setIsOpen(false)}
+                                 className="w-full block py-5 pr-2 font-medium"
+                                 href="/admin">
+                                 پنل ادمین
+                              </Link>
+                           </li>
+                        )}
+                        <li className="w-full relative z-40">
+                           <Link
+                              onClick={() => setIsOpen(false)}
+                              className="w-full block py-5 pr-2 font-medium"
+                              href="/profile">
+                              پروفایل
+                           </Link>
+                           <button
+                              onClick={logoutHandler}
+                              className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                        absolute top-5 left-2 rounded-full z-50">
+                              <ImExit className="ml-1" />
+                           </button>
+                        </li>
+                     </>
+                  ) : (
+                     <li className="w-full">
+                        <Link
+                           onClick={() => setIsOpen(false)}
+                           href="/auth"
+                           className="w-full flex items-center justify-start py-5 pr-2 font-medium">
+                           ورود
+                        </Link>
+                     </li>
+                  )}
                </ul>
             )}
             {/* desktop menu */}
             <ul
-               className={`hidden lg:flex items-center justify-center gap-x-4 text-lg `}>
+               className={`hidden lg:flex items-center justify-center gap-x-4 text-lg transition-all duration-200 ${
+                  isLoading ? "blur-sm opacity-0" : "blur-0 opacity-100"
+               }`}>
                <li>
                   <Link
                      className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
@@ -85,27 +144,56 @@ const Header = () => {
                      محصولات
                   </Link>
                </li>
-               {/* <li className="relative z-40">
-                  <Link
-                     className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+               {user ? (
+                  <>
+                     <li className="relative z-40">
+                        <Link
+                           className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
                       hover:text-primary-600 transition-all rounded-lg"
-                     href="/profile">
-                     پروفایل
-                  </Link>
-                  <button
-                     className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                           href="/cart">
+                           سبد خرید
+                        </Link>
+                        <span
+                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
+                        absolute top-2 left-[-12px] pt-0.5 pr-0.5 rounded-full z-50">
+                           {toPersianDigits(user.cart?.products.length || 0)}
+                        </span>
+                     </li>
+                     {user.role === "ADMIN" && (
+                        <li>
+                           <Link
+                              className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+                      hover:text-primary-600 transition-all rounded-lg"
+                              href="/admin">
+                              پنل ادمین
+                           </Link>
+                        </li>
+                     )}
+                     <li className="relative z-40">
+                        <Link
+                           className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+                      hover:text-primary-600 transition-all rounded-lg"
+                           href="/profile">
+                           پروفایل
+                        </Link>
+                        <button
+                           onClick={logoutHandler}
+                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
                         absolute top-2 left-[-12px] rounded-full z-50 hover:scale-125 transition-all">
-                     <ImExit className="ml-1" />
-                  </button>
-               </li> */}
-               <li>
-                  <Link
-                     href="/auth"
-                     className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
+                           <ImExit className="ml-1" />
+                        </button>
+                     </li>
+                  </>
+               ) : (
+                  <li>
+                     <Link
+                        href="/auth"
+                        className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
                 hover:text-primary-600 transition-all rounded-lg">
-                     ورود
-                  </Link>
-               </li>
+                        ورود
+                     </Link>
+                  </li>
+               )}
             </ul>
          </nav>
       </header>

@@ -48,7 +48,16 @@ module.exports = {
          fontFamily: {
             sans: ["var(--font-vazir)", ...fontFamily.sans],
          },
+         container: {
+            center: true,
+         },
       },
    },
-   plugins: [],
+   corePlugins: {
+      aspectRatio: false,
+   },
+   plugins: [
+      require("@tailwindcss/forms"),
+      require("@tailwindcss/aspect-ratio"),
+   ],
 };

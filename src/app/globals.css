@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.customScrollBar::-webkit-scrollbar {
+   background-color: rgb(var(--color-secondary-200));
+   border-radius: 25px 0px 0px 25px;
+   width: 8px;
+}
+
+.customScrollBar::-webkit-scrollbar-thumb {
+   background-color: rgb(var(--color-primary-500));
+   border-radius: 8px 8px 8px 8px;
+}
+
 @layer base {
    :root {
       --background-app-rgb: 244, 245, 247;
@@ -30,6 +41,20 @@
       --color-error: 255, 71, 87;
       --color-red-500: 239, 68, 68;
       --color-red-300: 252, 165, 165;
+   }
+}
+
+@layer components {
+   .textField__input {
+      @apply w-full outline-none border-2 border-secondary-500 rounded-xl bg-primary-100 py-4
+      focus:border-primary-600 focus:shadow-xl focus:bg-transparent transition-all text-primary-600;
+   }
+
+   .table__th {
+      @apply border-b-2 border-secondary-500 font-medium p-3 pr-8 pb-3 text-right;
+   }
+   .table__td {
+      @apply border-b border-secondary-300 p-3 pr-8 pb-3 text-right;
    }
 }
 
