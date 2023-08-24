@@ -1,4 +1,5 @@
 import { couponListTableTHeads } from "@/constants/tableHeads";
+import { priceUtils } from "@/utils/priceUtils";
 import { toLocaleDateString } from "@/utils/toLocalDateString";
 import { toPersianDigits } from "@/utils/toPersianDigits";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -30,7 +31,10 @@ const CouponsTable = ({ coupons }) => {
                            {coupon.code}
                         </td>
                         <td className="table__td">{coupon.type}</td>
-                        <td className="table__td">{coupon.amount}</td>
+                        <td className="table__td">
+                           {toPersianDigits(priceUtils(coupon.amount))}
+                           {coupon.type === "percent" ? "%" : ""}
+                        </td>
                         <td className="table__td">
                            <div className="space-y-2 flex flex-col items-start">
                               {coupon.productIds.map((p) => {
@@ -38,8 +42,12 @@ const CouponsTable = ({ coupons }) => {
                               })}
                            </div>
                         </td>
-                        <td className="table__td">{coupon.usageCount}</td>
-                        <td className="table__td">{coupon.usageLimit}</td>
+                        <td className="table__td">
+                           {toPersianDigits(coupon.usageCount)}
+                        </td>
+                        <td className="table__td">
+                           {toPersianDigits(coupon.usageLimit)}
+                        </td>
                         <td className="table__td">
                            {toLocaleDateString(coupon.expireDate)}
                         </td>
