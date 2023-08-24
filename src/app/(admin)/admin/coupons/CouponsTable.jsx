@@ -50,7 +50,7 @@ const CouponsTable = ({ coupons }) => {
                               </button>
                               <Link
                                  className="block text-secondary-600"
-                                 href={`/admin/products/edit/${coupon._id}`}>
+                                 href={`/admin/coupons/edit/${coupon._id}`}>
                                  <PencilSquareIcon className="w-6 h-6" />
                               </Link>
                            </div>
