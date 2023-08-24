@@ -156,3 +156,42 @@ export const adminPaymentListTableTHeads = [
       label: "وضعیت",
    },
 ];
+
+export const couponListTableTHeads = [
+   {
+      id: 1,
+      label: "#",
+   },
+   {
+      id: 2,
+      label: "کد",
+   },
+   {
+      id: 3,
+      label: "نوع",
+   },
+   {
+      id: 4,
+      label: "مقدار",
+   },
+   {
+      id: 5,
+      label: "شامل محصولات",
+   },
+   {
+      id: 6,
+      label: "مقدار مصرفی",
+   },
+   {
+      id: 7,
+      label: "ظرفیت",
+   },
+   {
+      id: 8,
+      label: "تاریخ انقضا",
+   },
+   {
+      id: 9,
+      label: "عملیات",
+   },
+];
