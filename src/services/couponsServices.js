@@ -17,3 +17,9 @@ export function updateCoupon({ id, data }) {
       .patch(`/admin/coupon/update/${id}`, data)
       .then(({ data }) => data.data);
 }
+
+export function removeCoupon(id) {
+   return http
+      .delete(`/admin/coupon/remove/${id}`)
+      .then(({ data }) => data.data);
+}
