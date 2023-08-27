@@ -50,6 +50,39 @@
       focus:border-primary-600 focus:shadow-xl focus:bg-transparent transition-all text-primary-600;
    }
 
+   .btn {
+      @apply py-3 rounded-xl w-full relative outline-none border-none;
+   }
+
+   .btn--primary {
+      @apply bg-primary-600 text-secondary-100;
+   }
+
+   .btn--singleProduct {
+      @apply absolute bottom-[-115px] md:bottom-[-40px] lg:bottom-[-85px] md:w-2/3 left-0 shadow-lg;
+   }
+
+   .panelLink {
+      @apply px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
+      transition-all duration-200;
+   }
+
+   .badge {
+      @apply text-secondary-100 px-4 py-1 rounded-full pt-2 text-sm;
+   }
+
+   .badge--header {
+      @apply w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center absolute rounded-full z-50;
+   }
+
+   .badge--primary {
+      @apply bg-primary-600 text-secondary-100;
+   }
+
+   .badge--discount {
+      @apply bg-red-500;
+   }
+
    .table__th {
       @apply border-b-2 border-secondary-500 font-medium p-3 pr-8 pb-3 text-right;
    }

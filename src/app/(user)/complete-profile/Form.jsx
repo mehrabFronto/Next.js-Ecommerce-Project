@@ -62,7 +62,7 @@ const Form = ({ mutateAsync }) => {
 
             {/* submit btn */}
             <button
-               className="w-full bg-blue-600 text-white py-3 rounded-lg mt-2 disabled:opacity-50 outline-none"
+               className="btn btn--primary mt-2 disabled:opacity-50"
                type="submit"
                disabled={!formik.isValid}>
                ثبت اطلاعات

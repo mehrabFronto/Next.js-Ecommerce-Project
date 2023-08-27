@@ -65,8 +65,7 @@ function MePage() {
                })}
             </div>
             <button
-               className="w-full bg-primary-600 text-secondary-100 py-3 rounded-lg mt-2 
-                        disabled:opacity-50 outline-none"
+               className="btn btn--primary mt-2 disabled:opacity-50"
                type="submit">
                {isUpdating ? <ThreeDotsLoading /> : "ثبت"}
             </button>

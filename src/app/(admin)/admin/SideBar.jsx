@@ -19,56 +19,49 @@ const SideBar = () => {
          <ul className="flex flex-col gap-y-4 p-4">
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/">
                   صفحه اصلی
                </Link>
             </li>
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/admin">
                   داشبورد
                </Link>
             </li>
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/admin/users">
                   کاربران
                </Link>
             </li>
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/admin/products">
                   محصولات
                </Link>
             </li>
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/admin/categories">
                   دسته بندی
                </Link>
             </li>
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/admin/coupons">
                   کد تخفیف
                </Link>
             </li>
             <li>
                <Link
-                  className="px-4 py-6 bg-primary-100 rounded-md block text-primary-700 hover:shadow-md
-                   transition-all duration-200"
+                  className="panelLink"
                   href="/admin/payments">
                   سفارشات
                </Link>
@@ -76,8 +69,7 @@ const SideBar = () => {
             <li>
                <button
                   onClick={logoutHandler}
-                  className="px-4 py-6 bg-primary-100 rounded-md w-full text-right text-red-500 hover:shadow-md 
-                  transition-all duration-200">
+                  className="panelLink w-full text-right text-red-500 hover:shadow-md">
                   خروج از حساب کاربری
                </button>
             </li>

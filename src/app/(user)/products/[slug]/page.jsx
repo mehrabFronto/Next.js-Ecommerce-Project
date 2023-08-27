@@ -18,7 +18,7 @@ const SingleProductPage = async ({ params }) => {
    const { product } = await getOneProductBySlug(slug);
 
    return (
-      <div className="container max-w-screen-lg bg-secondary-200 rounded-2xl p-4 mt-28 md:mt-40 shadow-xl">
+      <div className="container max-w-screen-lg bg-secondary-200 rounded-xl p-4 mt-28 md:mt-40 shadow-xl">
          <div className="flex flex-col md:flex-row items-start md:gap-6 w-full">
             {/* product image section */}
             <div className="aspect-w-16 aspect-h-9 md:aspect-h-4 w-full md:w-1/2 relative">
@@ -31,8 +31,8 @@ const SingleProductPage = async ({ params }) => {
                   priority
                   src={`/images/${product.imageLink}`}
                   alt={product.title}
-                  className="rounded-2xl w-full h-full object-center object-cover absolute 
-                     top-[-110px] lg:top-[-130px] p-1.5 bg-primary-600 shadow-lg"
+                  className="rounded-3xl w-full h-full object-center object-cover absolute 
+                  top-[-110px] lg:top-[-130px] p-1.5 bg-primary-600 shadow-lg"
                />
                x
             </div>
@@ -66,9 +66,7 @@ const SingleProductPage = async ({ params }) => {
                   </div>
                   {/* discount or price title */}
                   {product.discount !== 0 ? (
-                     <span
-                        className="bg-red-500 text-secondary-100 w-12 h-6 pt-0.5 rounded-full flex items-center
-                      justify-center text-sm">
+                     <span className="badge badge--discount py-0.5">
                         {toPersianDigits(product.discount)}%
                      </span>
                   ) : (
@@ -78,9 +76,7 @@ const SingleProductPage = async ({ params }) => {
                {/* quantity */}
                <div className="flex items-center gap-x-2 text-sm mb-4">
                   <span className="font-medium">تعداد موجود در انبار:</span>
-                  <span
-                     className="py-0.5 px-2 bg-primary-600 flex items-center justify-center text-secondary-100
-                  rounded-full ">
+                  <span className="badge badge--primary py-0.5">
                      {toPersianDigits(product.countInStock)}
                   </span>
                </div>
@@ -89,8 +85,7 @@ const SingleProductPage = async ({ params }) => {
                   <span className="font-medium">دسته بندی:</span>
                   <Link
                      href={`/products?category=${product.category.englishTitle}`}
-                     className="py-0.5 px-3 bg-primary-600 flex items-center justify-center text-secondary-100
-                  rounded-full pt-0.5">
+                     className="badge badge--primary py-0.5">
                      {product.category.title}
                   </Link>
                </div>

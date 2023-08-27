@@ -100,9 +100,7 @@ const MobileHeader = () => {
                      className="w-full block py-5 pr-2 font-medium text-right">
                      خروج از حساب کاربری
                   </button>
-                  <span
-                     className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
-                        absolute top-5 left-2 rounded-full z-50">
+                  <span className="badge--header top-5 left-2 ">
                      <ImExit className="ml-1" />
                   </span>
                </li>

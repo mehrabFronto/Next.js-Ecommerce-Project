@@ -70,8 +70,7 @@ const CheckOtpForm = ({
          />
          <button
             disabled={otp.length !== 6}
-            className="w-full bg-primary-600 text-secondary-100 py-3 rounded-lg mt-2 
-            disabled:opacity-50 outline-none mb-4"
+            className=" btn btn--primary mt-2 mb-4 disabled:opacity-50"
             type="submit">
             تایید
          </button>

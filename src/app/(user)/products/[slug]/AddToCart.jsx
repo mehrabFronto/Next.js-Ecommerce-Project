@@ -46,8 +46,7 @@ const AddToCart = ({ product }) => {
          {isInCart() ? (
             <Link
                href="/cart"
-               className="bg-primary-600 text-secondary-100 py-3 rounded-xl w-full absolute bottom-[-115px]
-                md:bottom-[-40px] lg:bottom-[-85px] md:w-2/3 left-0 shadow-lg text-center">
+               className="btn btn--primary btn--singleProduct text-center">
                ادامه سفارش
             </Link>
          ) : isLoading ? (
@@ -55,8 +54,7 @@ const AddToCart = ({ product }) => {
          ) : (
             <button
                onClick={addToCartHandler}
-               className="bg-primary-600 text-secondary-100 py-3 rounded-xl w-full absolute bottom-[-115px]
-                md:bottom-[-40px] lg:bottom-[-85px] md:w-2/3 left-0 shadow-lg">
+               className="btn btn--primary btn--singleProduct">
                افزودن به سبد خرید
             </button>
          )}

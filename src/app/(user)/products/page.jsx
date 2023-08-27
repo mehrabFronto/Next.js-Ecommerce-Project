@@ -31,7 +31,7 @@ const ProductsPage = async ({ searchParams }) => {
          return (
             <div
                key={product._id}
-               className="col-span-3 md:col-span-2 xl:col-span-1 bg-white shadow-md rounded-xl p-4 
+               className="col-span-3 md:col-span-2 xl:col-span-1 bg-white shadow-md rounded-2xl p-4 
                min-h-[380px] flex flex-col">
                {/* product image section */}
                <div className="aspect-w-16 aspect-h-9 w-full mb-6 relative">
@@ -47,7 +47,7 @@ const ProductsPage = async ({ searchParams }) => {
                         priority
                         src={`/images/${product.imageLink}`}
                         alt={product.title}
-                        className="rounded-lg w-full h-full object-center object-cover"
+                        className="rounded-xl w-full h-full object-center object-cover"
                      />
                   </Link>
                   <div className="p-2">
@@ -63,9 +63,7 @@ const ProductsPage = async ({ searchParams }) => {
                         {product.title}
                      </Link>
                   </h2>
-                  <span className="bg-primary-600 text-secondary-100 px-4 py-1 rounded-full pt-2 text-sm">
-                     {product.brand}
-                  </span>
+                  <span className="badge badge--primary">{product.brand}</span>
                </div>
                {/* price section */}
                <div className="flex items-start justify-between flex-row-reverse mb-4">
@@ -93,9 +91,7 @@ const ProductsPage = async ({ searchParams }) => {
                   </div>
                   {/* discount or price title */}
                   {product.discount !== 0 ? (
-                     <span
-                        className="bg-red-500 text-secondary-100 w-12 h-6 pt-0.5 rounded-full flex items-center
-                      justify-center text-sm">
+                     <span className="badge badge--discount py-0.5">
                         {toPersianDigits(product.discount)}%
                      </span>
                   ) : (

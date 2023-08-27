@@ -119,7 +119,7 @@ const CouponForm = ({
             </div>
             {/* submit btn */}
             <button
-               className="w-full bg-primary-600 text-secondary-100 py-3 rounded-lg mt-2"
+               className="btn btn--primary mt-2"
                type="submit">
                {isLoading ? <ThreeDotsLoading /> : "تایید"}
             </button>

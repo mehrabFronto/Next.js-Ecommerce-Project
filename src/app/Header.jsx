@@ -46,15 +46,14 @@ const Header = () => {
             {/* mobile and tablet menu */}
             {isOpen && (
                <ul
-                  className={`lg:hidden flex flex-col items-center justify-center absolute
-                bg-primary-600 w-full ${
-                   user && user.role === "ADMIN"
-                      ? "bottom-[-345px] md:bottom-[-355px]"
-                      : user && user.role === "USER"
-                      ? "bottom-[-280px] md:bottom-[-290px]"
-                      : "bottom-[-210px] md:bottom-[-220px]"
-                } left-0 right-0 shadow-xl 
-                rounded-b md:rounded text-lg`}>
+                  className={`lg:hidden flex flex-col items-center justify-center absolute bg-primary-600
+                   w-full left-0 right-0 shadow-xl rounded-b md:rounded text-lg ${
+                      user && user.role === "ADMIN"
+                         ? "bottom-[-345px] md:bottom-[-355px]"
+                         : user && user.role === "USER"
+                         ? "bottom-[-280px] md:bottom-[-290px]"
+                         : "bottom-[-210px] md:bottom-[-220px]"
+                   }`}>
                   <li className="w-full pt-2 md:pt-0">
                      <Link
                         onClick={() => setIsOpen(false)}
@@ -73,6 +72,7 @@ const Header = () => {
                   </li>
                   {user ? (
                      <>
+                        {/* cart */}
                         <li className="w-full relative z-40">
                            <Link
                               onClick={() => setIsOpen(false)}
@@ -80,12 +80,11 @@ const Header = () => {
                               href="/cart">
                               سبد خرید
                            </Link>
-                           <span
-                              className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
-                        absolute top-5 left-2 rounded-full z-50">
+                           <span className="badge--header top-5 left-2">
                               {toPersianDigits(user.cart?.products.length || 0)}
                            </span>
                         </li>
+                        {/* admin panel */}
                         {user.role === "ADMIN" && (
                            <li className="w-full">
                               <Link
@@ -96,6 +95,7 @@ const Header = () => {
                               </Link>
                            </li>
                         )}
+                        {/* user pane; */}
                         <li className="w-full relative z-40">
                            <Link
                               onClick={() => setIsOpen(false)}
@@ -105,8 +105,7 @@ const Header = () => {
                            </Link>
                            <button
                               onClick={logoutHandler}
-                              className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
-                        absolute top-5 left-2 rounded-full z-50">
+                              className="badge--header top-5 left-2">
                               <ImExit className="ml-1" />
                            </button>
                         </li>
@@ -146,6 +145,7 @@ const Header = () => {
                </li>
                {user ? (
                   <>
+                     {/* cart */}
                      <li className="relative z-40">
                         <Link
                            className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
@@ -153,12 +153,11 @@ const Header = () => {
                            href="/cart">
                            سبد خرید
                         </Link>
-                        <span
-                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
-                        absolute top-2 left-[-12px] pt-0.5 pr-0.5 rounded-full z-50">
+                        <span className="badge--header top-2 left-[-12px] pt-0.5 pr-0.5">
                            {toPersianDigits(user.cart?.products.length || 0)}
                         </span>
                      </li>
+                     {/* admin panel */}
                      {user.role === "ADMIN" && (
                         <li>
                            <Link
@@ -169,6 +168,7 @@ const Header = () => {
                            </Link>
                         </li>
                      )}
+                     {/* user panel */}
                      <li className="relative z-40">
                         <Link
                            className="block py-6 lg:px-4 xl:px-6 2xl:px-8 font-medium hover:bg-secondary-200
@@ -178,8 +178,7 @@ const Header = () => {
                         </Link>
                         <button
                            onClick={logoutHandler}
-                           className="w-7 h-7 text-red-600 bg-secondary-200 flex items-center justify-center
-                        absolute top-2 left-[-12px] rounded-full z-50 hover:scale-125 transition-all">
+                           className="badge--header top-2 left-[-12px]  hover:scale-125 transition-all">
                            <ImExit className="ml-1" />
                         </button>
                      </li>

@@ -46,7 +46,7 @@ const AddToCart = ({ product }) => {
          {isInCart() ? (
             <Link
                href="/cart"
-               className="bg-primary-600 text-secondary-100 py-2 rounded-md w-full relative text-center">
+               className="btn btn--primary py-2 text-center">
                ادامه سفارش
             </Link>
          ) : isLoading ? (
@@ -54,7 +54,7 @@ const AddToCart = ({ product }) => {
          ) : (
             <button
                onClick={addToCartHandler}
-               className="bg-primary-600 text-secondary-100 py-2 rounded-md w-full relative">
+               className="btn btn--primary py-2">
                افزودن به سبد خرید
             </button>
          )}

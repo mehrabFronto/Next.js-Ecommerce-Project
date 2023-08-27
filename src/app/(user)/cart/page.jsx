@@ -41,7 +41,7 @@ const CartPage = () => {
    return (
       <div
          className="container max-w-screen-xl bg-secondary-200 p-4 rounded-xl shadow-xl lg:h-[680px] 
-         overflow-auto customScrollBar">
+         overflow-auto customScrollBar sticky top-28">
          <div className="flex flex-col items-center lg:flex-row lg:items-start justify-between gap-y-8">
             {/* products */}
             <div className="w-full max-w-screen-sm flex flex-col gap-y-6">
