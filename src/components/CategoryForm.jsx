@@ -1,5 +1,6 @@
 "use client";
 
+import TextField from "@/common/TextField";
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
 import Select from "react-select";
 
@@ -49,26 +50,13 @@ const CategoryForm = ({
             <div className="space-y-4">
                {categoriesFormData.map((data) => {
                   return (
-                     <div
+                     <TextField
                         key={data.id}
-                        className="flex flex-col w-full gap-y-2">
-                        {/* label */}
-                        <div
-                           className={`w-full flex items-center justify-between`}>
-                           <label className="text-xl text-slate-800 font-semibold">
-                              {data.label}
-                           </label>
-                        </div>
-                        {/* input */}
-                        <input
-                           value={categoriesData[data.name] || ""}
-                           name={data.name}
-                           type="text"
-                           className="textField__input"
-                           placeholder={`${data.label}...`}
-                           onChange={categoriesDataOnChange}
-                        />
-                     </div>
+                        label={data.label}
+                        value={categoriesData[data.name] || ""}
+                        name={data.name}
+                        onChange={categoriesDataOnChange}
+                     />
                   );
                })}
             </div>

@@ -1,25 +1,21 @@
-const TextField = ({ label, name, type = "text", placeholder, formik }) => {
+const TextField = ({ label, name, value, onChange }) => {
    return (
-      <div className="flex flex-col gap-y-2">
-         <div className="w-full flex items-center justify-between">
-            <label
-               className="text-xl text-slate-800 font-semibold"
-               htmlFor={name}>
-               {label}
-            </label>
-            {formik.errors[name] && formik.touched[name] && (
-               <p className="text-sm text-red-500 font-medium">
-                  {formik.errors[name]}
-               </p>
-            )}
-         </div>
+      <div className="flex flex-col w-full gap-y-2">
+         {/* label */}
+         <label
+            htmlFor={name}
+            className="text-xl text-slate-800 font-semibold">
+            {label}
+         </label>
+         {/* input */}
          <input
-            id={name}
+            value={value}
             name={name}
-            type={type}
+            type="text"
+            id={name}
             className="textField__input"
-            placeholder={placeholder}
-            {...formik.getFieldProps(name)}
+            placeholder={`${label}...`}
+            onChange={onChange}
          />
       </div>
    );

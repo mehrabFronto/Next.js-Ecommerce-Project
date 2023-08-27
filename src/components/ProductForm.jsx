@@ -1,5 +1,6 @@
 "use client";
 
+import TextField from "@/common/TextField";
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
 import Select from "react-select";
 import { TagsInput } from "react-tag-input-component";
@@ -76,26 +77,13 @@ const ProductForm = ({
             <div className="space-y-4">
                {productsFormData.map((data) => {
                   return (
-                     <div
+                     <TextField
                         key={data.id}
-                        className="flex flex-col w-full gap-y-2">
-                        {/* label */}
-                        <div
-                           className={`w-full flex items-center justify-between`}>
-                           <label className="text-xl text-slate-800 font-semibold">
-                              {data.label}
-                           </label>
-                        </div>
-                        {/* input */}
-                        <input
-                           value={productData[data.name] || ""}
-                           name={data.name}
-                           type="text"
-                           className="textField__input"
-                           placeholder={`${data.label}...`}
-                           onChange={productDataOnChange}
-                        />
-                     </div>
+                        label={data.label}
+                        name={data.name}
+                        value={productData[data.name] || ""}
+                        onChange={productDataOnChange}
+                     />
                   );
                })}
             </div>

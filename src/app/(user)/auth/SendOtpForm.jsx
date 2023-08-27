@@ -1,4 +1,4 @@
-import TextField from "@/common/TextField";
+import FormikTextField from "@/common/FormikTextField";
 import { toPersianDigits } from "@/utils/toPersianDigits";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
@@ -49,7 +49,7 @@ const SendOtpForm = ({
          {/* input */}
          <div className="flex flex-col gap-y-6 w-full pr-2">
             {/* email section */}
-            <TextField
+            <FormikTextField
                label="شماره تلفن خود را وارد کنید"
                name="phoneNumber"
                formik={formik}

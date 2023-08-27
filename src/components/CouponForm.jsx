@@ -1,4 +1,5 @@
 import RadioInput from "@/common/RadioInput";
+import TextField from "@/common/TextField";
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -49,26 +50,13 @@ const CouponForm = ({
             <div className="space-y-4">
                {couponsFormData.map((data) => {
                   return (
-                     <div
+                     <TextField
                         key={data.id}
-                        className="flex flex-col w-full gap-y-2">
-                        {/* label */}
-                        <div
-                           className={`w-full flex items-center justify-between`}>
-                           <label className="text-xl text-slate-800 font-semibold">
-                              {data.label}
-                           </label>
-                        </div>
-                        {/* input */}
-                        <input
-                           value={couponsData[data.name] || ""}
-                           name={data.name}
-                           type="text"
-                           className="textField__input"
-                           placeholder={`${data.label}...`}
-                           onChange={couponsDataOnChange}
-                        />
-                     </div>
+                        name={data.name}
+                        value={couponsData[data.name] || ""}
+                        label={data.label}
+                        onChange={couponsDataOnChange}
+                     />
                   );
                })}
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import TextField from "@/common/TextField";
 import ThreeDotsLoading from "@/common/ThreeDotsLoading";
 import { useGetUser } from "@/hooks/useAuth";
 import { updateUserProfile } from "@/services/authService";
@@ -48,35 +49,18 @@ function MePage() {
             <div className="w-full flex flex-col-reverse gap-y-4 mb-8">
                {Object.keys(includeObj(user, includesKey)).map((key) => {
                   return (
-                     // text field
-                     <div
+                     <TextField
                         key={key}
-                        className="flex flex-col w-full gap-y-2">
-                        {/* label */}
-                        <div
-                           className={`w-full flex items-center justify-between ${
-                              key === "biography" ? "mt-4" : "mt-0"
-                           }
-                        `}>
-                           <label className="text-xl text-slate-800 font-semibold">
-                              {key}
-                           </label>
-                        </div>
-                        {/* input */}
-                        <input
-                           value={formData[key] || ""}
-                           name={key}
-                           type="text"
-                           className="textField__input"
-                           placeholder={`${key}...`}
-                           onChange={(e) =>
-                              setFormData({
-                                 ...formData,
-                                 [e.target.name]: e.target.value,
-                              })
-                           }
-                        />
-                     </div>
+                        name={key}
+                        label={key}
+                        value={formData[key] || ""}
+                        onChange={(e) =>
+                           setFormData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                           })
+                        }
+                     />
                   );
                })}
             </div>

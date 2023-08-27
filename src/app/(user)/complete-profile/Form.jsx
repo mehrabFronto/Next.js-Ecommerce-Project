@@ -1,5 +1,5 @@
 "use client";
-import TextFiled from "@/common/TextField";
+import FormikTextField from "@/common/FormikTextField";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -46,14 +46,14 @@ const Form = ({ mutateAsync }) => {
          {/* inputs */}
          <div className="flex flex-col gap-y-6 w-full pr-2">
             {/* name section */}
-            <TextFiled
+            <FormikTextField
                label="نام"
                name="name"
                formik={formik}
                placeholder="نام..."
             />
             {/* email section */}
-            <TextFiled
+            <FormikTextField
                label="ایمیل"
                name="email"
                formik={formik}
