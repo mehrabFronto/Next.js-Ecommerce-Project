@@ -87,10 +87,10 @@ const ProductsFilter = ({ categories }) => {
                   {/* backdrop */}
                   <div
                      className="fixed w-full h-full top-0 bottom-0 right-0 left-0 bg-secondary-600 
-                  opacity-50 z-20"
+                  opacity-50 z-50"
                      onClick={() => setIsFilterOpen(false)}></div>
                   {/* list */}
-                  <div className="fixed w-full bottom-0 right-0 left-0 bg-white z-30 rounded-t-xl shadow-lg">
+                  <div className="fixed w-full bottom-0 right-0 left-0 bg-white z-50 rounded-t-xl shadow-lg">
                      {/* header */}
                      <div className="flex items-center justify-between px-2 pt-3 mb-6">
                         <span className="pr-5"></span>
