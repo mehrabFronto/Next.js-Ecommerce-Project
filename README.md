@@ -1,6 +1,6 @@
 <h1 align="center" id="title">Next Shop</h1>
 
-<p id="description">A shopping app with admin panel, user panel, and a shop using next.js (app directory), tailwind.css, react-query, fromik-yup, etc</p>
+<p id="description">A shopping app with Admin panel, User panel and a shop using Next.js v13(app directory), Tailwindcss, React-Query, Fromik-Yup, etc</p>
 
   
   
@@ -10,11 +10,11 @@ Here're some of the project's best features:
 
 *   Sign-in with otp code using Kavenegar service
 *   Create accessToken based on refreshToken after accessToken expired
-*   Sorting products and filtering products based on categories by query
-*   Like product and add product to cart
+*   Sorting products and filtering based on categories by query-string(saerchParams)
+*   Like products and add products to cart
 *   Create payment
-*   Managing user, products, categories, payments and coupons like adding, removing or updating by only admins in admin panel
-*   Securing admin panel and user panel
+*   Managing users, products, categories, payments and coupons like adding, removing or updating and all the other processes by only Admin in Admin panel
+*   Securing Admin panel and User panel
 *   Responsive style for mobile, tablet, laptop and large laptop
 
 <p id="description">Because back-end is local, the project could not be deployed on a server</p>
