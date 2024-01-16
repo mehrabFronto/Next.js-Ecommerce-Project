@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Next Shop</h1>
+<h1 align="center" id="title">Next.js E-Commerce</h1>
 
 <p id="description">A shopping app with Admin panel, User panel and a shop using Next.js v13(app directory), Tailwindcss, React-Query, Fromik-Yup, etc</p>
 
