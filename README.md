@@ -8,13 +8,14 @@
 
 Here're some of the project's best features:
 
-*   Sign-in with otp code using Kavenegar service
-*   Create accessToken based on refreshToken after accessToken expired
-*   Sorting products and filtering based on categories by query-string(saerchParams)
-*   Like products and add products to cart
-*   Create payment
-*   Managing users, products, categories, payments and coupons like adding, removing or updating and all the other processes by only Admin in Admin panel
-*   Securing Admin panel and User panel
-*   Responsive style for mobile, tablet, laptop and large laptop
+<li>Established a secure sign-in process for users by integrating OTP code functionality through Kavehnegar service.</li>
+<li>Deployed a logic to create access token using refresh token to optimize user experience.</li>
+<li>Implemented a feature to sort products and filter based on categories using “query-string”.</li>
+<li>incorporated a feature that lets users save products they like and easily add them to their cart.</li>
+<li>Administering all user, product, category, payment, and coupon operations solely through the Admin panel.</li>
+<li>Improved security measures for the Admin and User panels to reduce security breaches.</li>
+<li>Employed responsive design across multiple devices like mobile phones, tablets and laptops.</li>
+<br />
+
 
 <p id="description">Because back-end is local, the project could not be deployed on a server</p>
